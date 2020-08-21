@@ -1,6 +1,6 @@
 # Do not track build artifacts
-local/freetype2/*
-local/zlib/*
-local/libpng/*
-local/libjpeg/*
-local/podofo/*
+freetype2/
+zlib/
+libpng/
+libjpeg/
+podofo/
