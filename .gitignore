@@ -1,5 +1,5 @@
 # Do not track build artifacts
-freetype2/
+freetype/
 zlib/
 libpng/
 libjpeg/
