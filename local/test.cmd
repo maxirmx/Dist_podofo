@@ -16,14 +16,8 @@ IF NOT EXIST podofo    (powershell -ExecutionPolicy Bypass %~dp0..\load-podofo.p
 IF NOT EXIST zlib      (powershell -ExecutionPolicy Bypass %~dp0..\EZTools\load-library.ps1 zlib %1 %2)
 IF NOT EXIST libpng    (powershell -ExecutionPolicy Bypass %~dp0..\EZTools\load-library.ps1 libpng %1 %2)
 IF NOT EXIST libjpeg   (powershell -ExecutionPolicy Bypass %~dp0..\EZTools\load-library.ps1 libjpeg %1 %2)
-IF NOT EXIST freetype2 (powershell -ExecutionPolicy Bypass %~dp0..\EZTools\load-library.ps1 freetype2 %1 %2)
+IF NOT EXIST freetype  (powershell -ExecutionPolicy Bypass %~dp0..\EZTools\load-library.ps1 freetype %1 %2)
 
-set FTDIR="..\freetype2"
-set PNGDIR="..\libpng"
-set JPEGDIR="..\libjpeg"
-set ZLIBDIR="..\zlib" 
-
-cmake -G "NMake Makefiles" podofo -DCMAKE_INCLUDE_PATH="%FTDIR%\include;%PNGDIR%\include;%JPEGDIR%\include;%ZLIBDIR%\include" -DCMAKE_LIBRARY_PATH="%FTDIR%\lib;%PNGDIR%\lib;%JPEGDIR%\lib;%ZLIBDIR%\lib" -DPODOFO_BUILD_SHARED:BOOL=FALSE -DFREETYPE_LIBRARY_NAMES_DEBUG=freetype239MT_D -DFREETYPE_LIBRARY_NAMES_RELEASE=freetype239MT
-cmake --build . 
+powershell -ExecutionPolicy Bypass .\build.ps1 %1 %2 -configure
 
 cd %~dp0

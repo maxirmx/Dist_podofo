@@ -27,10 +27,10 @@ install:
   - ps: ./EZTools/load-library.ps1 "ZLib"      $env:platform $env:configuration
   - ps: ./EZTools/load-library.ps1 "libpng"    $env:platform $env:configuration
   - ps: ./EZTools/load-library.ps1 "libjpeg"   $env:platform $env:configuration
-  - ps: ./EZTools/load-library.ps1 "freetype2" $env:platform $env:configuration
+  - ps: ./EZTools/load-library.ps1 "freetype"  $env:platform $env:configuration
   
-#build_script:
-#  - ps: ./build.ps1 $env:platform $env:configuration
+build_script:
+  - ps: ./build.ps1 $env:platform $env:configuration
 
 #after_build:
 #  - ps: ./rename.ps1 $env:freetype_version $env:platform $env:configuration
