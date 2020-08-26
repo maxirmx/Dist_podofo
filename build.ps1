@@ -21,8 +21,6 @@ Param (
    default   { "build.ps1: configuration <" + $configuration + "> was not recognized"; exit (-1);  } 
  }
 
-$dname = "build"
-
  if ($configure) {
   .\EZTools\cmd-script.ps1 "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat" $platform
   $cmake = "C:\Program Files\CMake\bin\cmake" 
@@ -31,31 +29,24 @@ $dname = "build"
  }
 
 
+$dname = Get-Location
 
-#cmake -G "NMake Makefiles" podofo -DCMAKE_INCLUDE_PATH="%FTDIR%\include;%PNGDIR%\include;%JPEGDIR%\include;%ZLIBDIR%\include" -DCMAKE_LIBRARY_PATH="%FTDIR%\lib;%PNGDIR%\lib;%JPEGDIR%\lib;%ZLIBDIR%\lib" -DPODOFO_BUILD_SHARED:BOOL=FALSE -DFREETYPE_LIBRARY_NAMES_DEBUG=freetype239MT_D -DFREETYPE_LIBRARY_NAMES_RELEASE=freetype239MT
-#cmake --build . 
+Set-Location "podofo"
 
-cd podofo
-New-Item -ItemType Directory -Force -Path $dname
-cd $dname
+if (-Not (Test-Path "build")) {
+ New-Item -ItemType Directory -Force -Path build
+} 
+Set-Location "build"
 
-set FTDIR="..\..\freetype"
-set PNGDIR="..\..\libpng"
-set JPEGDIR="..\..\libjpeg"
-set ZLIBDIR="..\..\zlib" 
+if (Test-Path "CMakeCache.txt") {
+  Remove-Item "CMakeCache.txt"
+}
 
-
-dir ../../freetype/lib
 
 $bp1 =  @("-G","""NMake Makefiles""",
-		"-D","CMAKE_INCLUDE_PATH=""../../freetype/include;../../libpng/include;../../libjpeg/include;../../zlib/include""",
-                "-D","CMAKE_LIBRARY_PATH=""../../freetype;../../libpng\lib;../../libjpeg/lib;../../zlib/lib""", 
+		"-D","CMAKE_INCLUDE_PATH=""$dname\freetype\include;$dname\libpng\include;$dname\libjpeg\include;$dname\zlib\include""",
+                "-D","CMAKE_LIBRARY_PATH=""$dname\freetype\lib;$dname\libpng\lib;$dname\libjpeg\lib;$dname\zlib\lib""", 
                 "-D","PODOFO_BUILD_SHARED:BOOL=FALSE", 
-		"-D","ZLIB_LIBRARY=../../zlib/lib",
-                "-D","PNG_LIBRARY=../../libpng/lib",
-                "-D","JPEG_LIBRARY=../../libjpeg/lib",
-                "-D","FREETYPE_LIBRARY=../../freetype/lib",
-                "-D","ZLIB_INCLUDE_DIR=../../zlib/include" 
                 "..")
 
 
@@ -65,8 +56,7 @@ $bp1 =  @("-G","""NMake Makefiles""",
 
 $bp2 =  @("--build",  ".")
 
-
 & $cmake  $bp1
 & $cmake  $bp2
 
-cd ../..
+Set-Location "../.."
