@@ -54,7 +54,8 @@ $bp1 =  @("-G","""NMake Makefiles""",
 # $bp2 =  @("--build",  ".",
 #           "--target", "package")
 
-$bp2 =  @("--build",  ".")
+$bp2 =  @("--build",  ".",
+          "--target", "podofo_static" )
 
 & $cmake  $bp1
 & $cmake  $bp2
