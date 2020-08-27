@@ -32,22 +32,25 @@ install:
 build_script:
   - ps: ./build.ps1 $env:platform $env:configuration
 
-#after_build:
-#  - ps: ./rename.ps1 $env:freetype_version $env:platform $env:configuration
+after_build:
+  - cd d
+  - 7z a -tzip -r -y ..\podofo-%platform%-%configuration%.zip *.*
   
 test: off
 
-#artifacts:
-# - path: 'freetype/build/freetype-%platform%-%configuration%.zip'
+artifacts:
+ - path: 'podofo-%platform%-%configuration%.zip'
 
-#deploy:
-#- provider: GitHub
-#  release: $(appveyor_build_version)
-#  description: 'freetype2 build [$(appveyor_build_version)]'
-#  auth_token:
-#    secure: 7fz/vsEpOOUyPYNmrykrY4lgqu3XQsag6g4x25nOwtd2dM2kc3X3GPoPzMCMDno/
-#  draft: false
-#  prerelease: false
-#  on:
-#    branch: master                 # release from master branch only
-#    APPVEYOR_REPO_TAG: false       # deploy on tag push only
+deploy:
+- provider: GitHub
+# I am tagging through github
+# Tag format is v<major version>.<minor version>, shall be consistent with major.monir of Appveyor build
+# release: v$(appveyor_build_version)
+  description: 'podofo appveyor build script [$(appveyor_build_version)] with binaries'
+  auth_token:
+    secure: 7fz/vsEpOOUyPYNmrykrY4lgqu3XQsag6g4x25nOwtd2dM2kc3X3GPoPzMCMDno/
+  draft: false
+  prerelease: false
+  on:
+    branch: master                 # release from master branch only
+    APPVEYOR_REPO_TAG: true        # deploy on tag push only
