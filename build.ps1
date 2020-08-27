@@ -47,6 +47,7 @@ $bp1 =  @("-G","""NMake Makefiles""",
 		"-D","CMAKE_INCLUDE_PATH=""$dname\freetype\include;$dname\libpng\include;$dname\libjpeg\include;$dname\zlib\include""",
                 "-D","CMAKE_LIBRARY_PATH=""$dname\freetype\lib;$dname\libpng\lib;$dname\libjpeg\lib;$dname\zlib\lib""", 
                 "-D","PODOFO_BUILD_SHARED:BOOL=FALSE", 
+		"-D","CMAKE_INSTALL_PREFIX=""$dname\d""",
                 "..")
 
 
@@ -55,7 +56,7 @@ $bp1 =  @("-G","""NMake Makefiles""",
 #           "--target", "package")
 
 $bp2 =  @("--build",  ".",
-          "--target", "podofo_static" )
+          "--target", "install" )
 
 & $cmake  $bp1
 & $cmake  $bp2

@@ -19,4 +19,6 @@ Remove-Item $fname1
 
 Rename-Item -Path $fname -NewName podofo
 
+# 
+Copy-Item   -Path '.\patch\CMakeLists.txt' -Destination '.\podofo\test\TokenizerTest\CMakeLists.txt' -Force
 
