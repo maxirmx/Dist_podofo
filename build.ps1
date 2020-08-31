@@ -49,7 +49,8 @@ $bp1 =  @("-G","""NMake Makefiles""",
                 "-D","PODOFO_BUILD_SHARED:BOOL=FALSE", 
   		"-D","CMAKE_BUILD_TYPE=$configuration",
 		"-D","CMAKE_INSTALL_PREFIX=""$dname\d""",
-		"-D","WANT_LIB64:BOOL=TRUE",
+		"-D","WANT_LIB64:BOOL=FALSE",
+ 		"--debug-output",
                 "..")
 
 
