@@ -22,7 +22,7 @@ Param (
  }
 
  if ($configure) {
-  .\EZTools\cmd-script.ps1 "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat" $platform
+  .\EZTools\use-environment.ps1 "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat" $platform
   $cmake = "C:\Program Files\CMake\bin\cmake" 
  } else {
   $cmake = "cmake"

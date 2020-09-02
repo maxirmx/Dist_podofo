@@ -31,7 +31,7 @@ install:
   
 build_script:
   - ps: ./build-podofo.ps1 $env:platform $env:configuration
-  - ps: ./EZTools/install-pdb.ps1  ./d .podofo/build podofo,podofo_static
+  - ps: ./EZTools/install-pdb.ps1  ./d ./podofo/build podofo,podofo_static
 
 after_build:
   - cd d

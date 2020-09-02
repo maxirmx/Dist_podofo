@@ -19,7 +19,7 @@ IF NOT EXIST libjpeg   (powershell -ExecutionPolicy Bypass %~dp0..\EZTools\load-
 IF NOT EXIST freetype  (powershell -ExecutionPolicy Bypass %~dp0..\EZTools\load-library.ps1 freetype %1 %2)
 
 powershell -ExecutionPolicy Bypass .\build-podofo.ps1 %1 %2 -configure
-powershell -ExecutionPolicy Bypass .\EZTools\install-pdb.ps1  .\d .podofo\build podofo,podofo_static
+powershell -ExecutionPolicy Bypass .\EZTools\install-pdb.ps1  .\d .\podofo\build podofo,podofo_static
 
 
 cd %~dp0
