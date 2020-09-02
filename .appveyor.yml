@@ -30,7 +30,8 @@ install:
   - ps: ./EZTools/load-library.ps1 "freetype"  $env:platform $env:configuration
   
 build_script:
-  - ps: ./build.ps1 $env:platform $env:configuration
+  - ps: ./build-podofo.ps1 $env:platform $env:configuration
+  - ps: ./EZTools/install-pdb.ps1  ./d .podofo/build podofo,podofo_static
 
 after_build:
   - cd d
