@@ -52,7 +52,6 @@ $bp1 =  @("-G","""NMake Makefiles""",
 		"-D","WANT_LIB64:BOOL=FALSE",
                 "..")
 
-
 # Manually packaged in .appveyor.yml script
 # $bp2 =  @("--build",  ".",
 #           "--target", "package")
@@ -63,4 +62,4 @@ $bp2 =  @("--build",  ".",
 & $cmake  $bp1
 & $cmake  $bp2
 
-Set-Location "../.."
+Set-Location $dname
