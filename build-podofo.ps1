@@ -12,13 +12,13 @@ Param (
    "X64"   { $platform = "amd64"; break;  } 
    "x86"   { break; } 
    "amd64" { break; } 
-   default { "build.ps1: platform <" + $platform + "> was not recognized"; exit (-1);  } 
+   default { "build-podofo.ps1: platform <" + $platform + "> was not recognized"; exit (-1);  } 
  }
 
  switch($configuration) {
    "release" { break; } 
    "debug"   { break; } 
-   default   { "build.ps1: configuration <" + $configuration + "> was not recognized"; exit (-1);  } 
+   default   { "build-podofo.ps1: configuration <" + $configuration + "> was not recognized"; exit (-1);  } 
  }
 
  if ($configure) {
