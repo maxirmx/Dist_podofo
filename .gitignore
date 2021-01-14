@@ -4,4 +4,5 @@ freetype/
 zlib/
 libpng/
 libjpeg/
+libtiff/
 podofo/
