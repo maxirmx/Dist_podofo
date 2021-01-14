@@ -44,8 +44,8 @@ if (Test-Path "CMakeCache.txt") {
 
 
 $bp1 =  @("-G","""NMake Makefiles""",
-		"-D","CMAKE_INCLUDE_PATH=""$dname\freetype\include;$dname\libpng\include;$dname\libjpeg\include;$dname\zlib\include""",
-                "-D","CMAKE_LIBRARY_PATH=""$dname\freetype\lib;$dname\libpng\lib;$dname\libjpeg\lib;$dname\zlib\lib""", 
+		"-D","CMAKE_INCLUDE_PATH=""$dname\freetype\include;$dname\libpng\include;$dname\libtiff\include;$dname\libjpeg\include;$dname\zlib\include""",
+                "-D","CMAKE_LIBRARY_PATH=""$dname\freetype\lib;$dname\libpng\lib;$dname\libtiff\lib;$dname\libjpeg\lib;$dname\zlib\lib""", 
                 "-D","PODOFO_BUILD_SHARED:BOOL=FALSE", 
   		"-D","CMAKE_BUILD_TYPE=$configuration",
 		"-D","CMAKE_INSTALL_PREFIX=""$dname\d""",

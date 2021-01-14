@@ -23,10 +23,11 @@ install:
   - git submodule update
   # Get freetype2 source from GIT
   - ps: ./load-podofo.ps1 
-  # Load libraries (zlib, libpng, freetype)
+  # Load libraries (zlib, libpng, libtiff, freetype)
   - ps: ./EZTools/load-library.ps1 "ZLib"      $env:platform $env:configuration
   - ps: ./EZTools/load-library.ps1 "libpng"    $env:platform $env:configuration
   - ps: ./EZTools/load-library.ps1 "libjpeg"   $env:platform $env:configuration
+  - ps: ./EZTools/load-library.ps1 "libtiff"   $env:platform $env:configuration
   - ps: ./EZTools/load-library.ps1 "freetype"  $env:platform $env:configuration
   
 build_script:
